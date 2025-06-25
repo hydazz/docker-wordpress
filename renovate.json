@@ -1,0 +1,40 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "semanticCommits": "enabled",
+  "commitMessagePrefix": "chore:",
+  "commitMessageAction": "update",
+  "commitMessageTopic": "{{depName}}",
+  "commitMessageExtra": "to {{newVersion}}",
+  "automerge": true,
+  "labels": ["dependencies"],
+  "docker": {
+    "enabled": true,
+    "pinDigests": false
+  },
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["wordpress"],
+      "automerge": true,
+      "labels": ["dependencies", "automerge"],
+      "commitMessagePrefix": "chore(auto):",
+      "commitMessageAction": "update WordPress",
+      "commitMessageTopic": "",
+      "commitMessageExtra": "to {{newVersion}}"
+    }
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["^Dockerfile$"],
+      "matchStrings": [
+        "FROM wordpress:(?<currentValue>\\S+)"
+      ],
+      "datasourceTemplate": "docker",
+      "depNameTemplate": "wordpress",
+      "versioningTemplate": "docker"
+    }
+  ]
+}
