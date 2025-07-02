@@ -1,4 +1,4 @@
-FROM wordpress:6.8.1-fpm-alpine
+FROM wordpress:6.8.1-fpm-alpine@sha256:f7b5b9baabd89bbd484d07bd78cfe68ff99053374c590e34218a870508489c96
 
 # Install PHP extensions
 RUN set -ex; \

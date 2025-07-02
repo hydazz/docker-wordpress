@@ -33,7 +33,7 @@ jobs:
       - name: Get WordPress version from Dockerfile
         id: version
         run: |
-          WP_VERSION=$(grep "FROM wordpress:" Dockerfile | cut -d: -f2)
+          WP_VERSION=$(grep "FROM wordpress:" Dockerfile | cut -d: -f2 | cut -d@ -f1)
           echo "wordpress-version=$WP_VERSION" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker image
